@@ -1,0 +1,9 @@
+<h1>Редактирование статьи: {{article.get_name()}}</h1>
+
+<a href="/articles">Все статьи</a>
+
+<form action="" method="post" style="display: flex; align-items: center; flex-direction: column;  justify-content: center; background-color: burlywood; padding: 2rem; margin: 0 auto; border-radius: 25px; width: 50%; height: 50vh; text-align: center; color: aliceblue;">
+  <label for="">Заголовок статьи <input type="text" name="name" value="{{article.get_name()}}"></label><br>
+  <label for="">Текст статьи <textarea name="text">{{article.get_text()}}</textarea></label><br>
+  <input type="submit" value="Обновить">
+</form>

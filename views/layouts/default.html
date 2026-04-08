@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+  <!-- header -->
+  <header>
+    <div class="container">
+      <div class="navbar-content">
+        <a href="#">
+          <img src="/navbar-logo1.png" alt="#" class="navbar-logo">
+        </a>
+        <ul class="navbar-list">
+          <li class="navbar-list-item">
+            <a href="/home">Home</a>
+          </li>
+          <li class="navbar-list-item">
+            <a href="#">About</a>
+          </li>
+          <li class="navbar-list-item">
+            <a href="/articles">Article</a>
+          </li>
+          <li>
+            {% if user %}
+              {{user.get_nickname()}} <a href="/user/logout">Выход</a>
+            {% else %}
+              <a href="/user/login">Войти</a>
+            {% endif %}
+            </li>
+
+        </ul>
+      </div>
+
+    </div>
+  </header>
+   <main style="min-height: 80vh;">
+            {% include content %}
+   </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-item">
+            <p>О НАС</p>
+            <ul class="footer-list">
+              <li class="footer-list-item">
+                <a href="#">Мы</a>
+              </li>
+              <li class="footer-list-item">
+                <a href="#">Мы</a>
+              </li>
+              <li class="footer-list-item">
+                <a href="#">Мы</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-item">
+            <p>ЕЩЕ РАЗ О НАС</p>
+            <ul class="footer-list">
+              <li class="footer-list-item">
+                <a href="#">Мы</a>
+              </li>
+              <li class="footer-list-item">
+                <a href="#">Мы</a>
+              </li>
+              <li class="footer-list-item">
+                <a href="#">Мы</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-item">
+            <p>НУ И СНОВА О НАС</p>
+            <ul class="footer-list">
+              <li class="footer-list-item">
+                <a href="#">Мы</a>
+              </li>
+              <li class="footer-list-item">
+                <a href="#">Мы</a>
+              </li>
+              <li class="footer-list-item">
+                <a href="#">Мы</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    
+      </div>
+    
+    </footer>
+    </body>
+    
+    </html>

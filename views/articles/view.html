@@ -1,0 +1,7 @@
+<h1>{{h1}}</h1>
+<p>{{article.get_name()}}</p>
+<p>{{article.get_text()}}</p>
+<p>Автор: {{ article.get_author() .get_nickname() }}</p>
+<a href="/article/{{article.get_id()}}/edit">Редактировать</a>
+<a href="/article/{{article.get_id()}}/delete">Удалить</a>
+<a href="/articles">Все статьи</a>
