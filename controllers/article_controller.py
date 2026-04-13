@@ -1,8 +1,12 @@
+import cgi
+
 from controllers.controller import Controller
 from models.article import Article
 from models.user import User
 from exceptions import NotFoundException
 from exceptions import UnauthorizedException
+from exceptions import InvalidArgumentException
+
 
 class ArticlesController(Controller):
    def index (self, request, response):
@@ -65,9 +69,28 @@ class ArticlesController(Controller):
       response.headers = [('Location', '/articles')]
 
    def add(self, request, response):
-      article = Article()
-      article.set_author_id(1)
-      article.set_name('Новая статья')
-      article.set_text('Текст новой статьи')
-      
-      article.save() 
+      if self.user is None:
+         raise UnauthorizedException('Необходимо авторизоваться')
+
+      response.text = self.view.render_html('articles/add.html', {'title' : 'Добавление статьи'})
+      if request.method == 'POST':
+         try:
+            form = cgi.FieldStorage(fp=request.environ['wsgi.input'], environ = request.environ)
+            fields = {
+               'name' : form.getvalue('name'),
+               'text' : form.getvalue('text'),
+            }
+            img_file = form['img']
+            article =Article.create(fields, img_file, self.user)
+            if isinstance(article, Article):
+               response.status_code = 302
+               response.headers = [('Location', '/articles')]
+               return
+
+         except InvalidArgumentException as e:
+            response.text = self.view.render_html('articles/add.html', {'title' : 'Добавление статьи', 'article_data' : fields, 'error' : e})
+            return         
+      response.text = self.view.render_html('articles/add.html', {'title': 'Добавление статьи'})
+
+
+         
